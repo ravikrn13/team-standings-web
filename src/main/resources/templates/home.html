@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Standings</title>
+</head>
+<body>
+<p> Welcome </p>
+<p> Find your team's standings using fields below</p>
+<form action = "findTeamStanding" method="post">
+
+    Country : <select name="country" >
+                <option value=""> </option>
+                <option th:each = "country: ${countries}" th:value="${country.id}" th:text="${country.name}"></option>
+             </select>
+             <br/><br/>
+    League : <select name="league" >
+                <option value=""> </option>
+                <option th:each = "league: ${leagues}" th:value="${league.id}" th:text="${league.name}"></option>
+            </select>
+            <br/><br/>
+
+    Team : <select name="team" >
+                <option value=""> </option>
+                <option th:each = "team: ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
+            </select>
+            <br/><br/>
+
+    <input type="submit" name="Submit" /> <br /> <br />
+</form>
+
+<p> Results </p>
+
+                <p th:each ="res: ${results}">
+                    Country Id and Name     : <span th:text="${res.countryId}" /> - <span th:text="${res.countryName}" /> <br />
+                    League Id and Name      : <span th:text="${res.leagueId}" /> - <span th:text="${res.leagueName}" /> <br />
+                    Team Id and Name        : <span th:text="${res.teamId}" /> - <span th:text="${res.teamName}" /> <br />
+                    Overall League Position : <span th:text="${res.overallPosition}" />
+                </p>
+
+
+</body>
+</html>

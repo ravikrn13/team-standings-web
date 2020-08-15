@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: Team Standings
+  thymeleaf:
+      cache: false
+      enabled: true
+      suffix: .html
+      prefix: classpath:/templates/
+
+server:
+  port: 8081
+
+application:
+  apikey: 9bb66184e0c8145384fd2cc0f7b914ada57b4e8fd2e4d6d586adcc27c257a978
+  url:
+    cache:
+      country: https://apiv2.apifootball.com/?action=get_countries&APIkey=
+      leagues: https://apiv2.apifootball.com/?action=get_leagues&APIkey=
+      teams: https://apiv2.apifootball.com/?action=get_teams&league_id=
+    standings: https://apiv2.apifootball.com/?action=get_standings&league_id=
+
+logging:
+  level:
+    root: INFO
