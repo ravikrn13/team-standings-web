@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.sapient.assessment</groupId>
 	<artifactId>team-standings-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>team-standings-web</name>
 	<description>Spring boot project to find the team standings by country, league and team names.</description>
 
