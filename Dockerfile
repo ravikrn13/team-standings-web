@@ -6,4 +6,5 @@ WORKDIR /opt/app
 
 COPY ${JAR_FILE} team-standings-web.jar
 
+EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "team-standings-web.jar"]
