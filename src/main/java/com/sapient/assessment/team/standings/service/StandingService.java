@@ -2,6 +2,7 @@ package com.sapient.assessment.team.standings.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sapient.assessment.team.standings.exception.StandingsException;
 import com.sapient.assessment.team.standings.model.Cache;
 import com.sapient.assessment.team.standings.model.LeagueModel;
 import com.sapient.assessment.team.standings.model.StandingsModel;
@@ -49,8 +50,8 @@ public class StandingService {
             response = findByLeague(leagueId);
         }
 
-        //error
-
+        if(response == null || response.isEmpty())
+            throw new StandingsException("No details found with given data.");
         return response;
     }
 
