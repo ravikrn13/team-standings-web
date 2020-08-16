@@ -50,7 +50,7 @@ public class StandingService {
             response = findByLeague(leagueId);
         }
 
-        if(response == null || response.isEmpty())
+        if (response == null || response.isEmpty())
             throw new StandingsException("No details found with given data.");
         return response;
     }
@@ -63,7 +63,7 @@ public class StandingService {
             String json = makeRequest(standingsUrl + leagueModel.getId() + "&APIkey=" + apikey);
             HashSet<StandingsModel> standingsModelSet = getStandingsModel(json);
             for (StandingsModel standingsModel : standingsModelSet) {
-                //standingsModel.setCountryId(leagueModel.getCountry().getId());
+                standingsModel.setCountryId(leagueModel.getCountryId());
             }
             return standingsModelSet;
         } else
@@ -79,7 +79,7 @@ public class StandingService {
             String json = makeRequest(standingsUrl + team.getLeague().getId() + "&APIkey=" + apikey);
             HashSet<StandingsModel> standingsModels = getStandingsModel(json);
             StandingsModel result = standingsModels.stream().filter(e -> e.getTeamId().equals(teamId)).findFirst().get();
-           // result.setCountryId(team.getLeague().getCountry().getId());
+            result.setCountryId(team.getLeague().getCountryId());
             HashSet<StandingsModel> set = new HashSet<>();
             set.add(result);
             return set;

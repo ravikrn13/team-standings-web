@@ -11,5 +11,10 @@ public class LeagueModel {
 
     @SerializedName(value = "league_name")
     private String name;
-    private CountryModel country;
+
+    @SerializedName(value = "country_id")
+    private String countryId;
+
+    @SerializedName(value = "country_name")
+    private String countryName;
 }
