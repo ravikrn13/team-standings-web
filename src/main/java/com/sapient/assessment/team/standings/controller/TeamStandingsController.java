@@ -46,7 +46,7 @@ public class TeamStandingsController {
             Set<StandingsModel> results = standingService.findTeamStanding(country, league, team);
             model.addAttribute("results", results);
         }
-
+        log.info("Request completed with countryId {}, leagueId {} and teamId {}", country, league, team);
         return "home";
     }
 }

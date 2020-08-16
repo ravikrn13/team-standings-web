@@ -37,4 +37,7 @@ public class Cache {
         teamSet.addAll(pTeamSet);
     }
 
+    public boolean isCachePopulated() {
+        return !countrySet.isEmpty() && !leagueSet.isEmpty() && !teamSet.isEmpty();
+    }
 }

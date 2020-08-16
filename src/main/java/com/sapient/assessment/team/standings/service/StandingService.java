@@ -36,9 +36,17 @@ public class StandingService {
     private Cache cache;
 
     @Autowired
+    private CacheService cacheService;
+
+    @Autowired
     private RestTemplate restTemplate;
 
     public Set<StandingsModel> findTeamStanding(String countryId, String leagueId, String teamId) {
+
+        if(!cache.isCachePopulated()) {
+            log.info("Trying to re-populate cache");
+            cacheService.populateCache();
+        }
 
         Set<StandingsModel> response = null;
 
@@ -57,6 +65,7 @@ public class StandingService {
 
 
     private Set<StandingsModel> findByLeague(String leagueId) {
+        log.info("Finding standings by leagueId {}", leagueId);
         Optional<LeagueModel> leagueModelOptional = cache.getLeagues().stream().filter(e -> leagueId.equals(e.getId())).findFirst();
         if (leagueModelOptional.isPresent()) {
             LeagueModel leagueModel = leagueModelOptional.get();
@@ -74,6 +83,7 @@ public class StandingService {
     private Set<StandingsModel> findByTeam(String teamId) {
         log.info("Finding standings by teamId {}", teamId);
         Optional<TeamModel> teamModelOptional = cache.getTeams().stream().filter(e -> teamId.equals(e.getId())).findFirst();
+
         if (teamModelOptional.isPresent()) {
             TeamModel team = teamModelOptional.get();
             String json = makeRequest(standingsUrl + team.getLeague().getId() + "&APIkey=" + apikey);
